@@ -1,0 +1,22 @@
+hardChallanges = [
+    "Sing along loudly to a song you don't know the lyrics to.",
+    "Convince a group of strangers to do a synchronized dance move with you.",
+    "Participate in a random group activity (e.g., a flash mob, a crowd chant).",
+    "Get a band member's autograph (or a photo with them if autograph isn't possible).",
+    "Perform a 30-second stand-up comedy routine for a small group.",
+    "Organize an impromptu group photo with at least 10 people you don't know.",
+    "Find someone who shares your birthday (month and day).",
+    "Get interviewed by a festival vlogger or journalist.",
+    "Teach someone a new trick or skill.",
+    "Find and correctly identify 5 different types of trees on the festival grounds.",
+    "Barter for something (successfully exchange something small for another small item).",
+    "Start a spontaneous sing-along with strangers.",
+    "Help a vendor set up or pack up a small part of their stall.",
+    "Find a lost item and return it to its owner (or lost and found).",
+    "Get a compliment from a security guard.",
+    "Discover a hidden gem or secret area of the festival.",
+    "Give an impromtu speech on why you love the festival.",
+    "Find someone wearing the exact same outfit as you.",
+    "Convince a stranger to take a silly photo with you, where both of you are making funny faces.",
+    "Lead a spontaneous, short meditation or mindfulness exercise for a small group."
+]
