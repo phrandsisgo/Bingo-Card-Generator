@@ -20,7 +20,6 @@ hardChallenge = [
     "Dance Battle with stranger",
     "Stack 20 cans of beer",
     "Help a stranger set up their tent",
-    #"Spontaneously dress up with festival findings",
     "Start a conga line through the audience",
     "Get Autographs from 10 Szitizens",
     "Build a human tower with 5 people",
@@ -42,7 +41,7 @@ hardChallenge = [
     "Take a selfie with a Dresseed up person",
     "High-5 someone younger than 10 Years old",
     "high-5 someone older than 60 Years old",
-    "Find someone with the same name as you"
+    "Find someone with the same name as you",
     "Invent a secret handshake with a friend",
     "Help someone who dropped something",
     "Try 5 different food stands",
