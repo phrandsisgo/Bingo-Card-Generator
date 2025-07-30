@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bingo Print</title>
     <script>
-        const easyChallange=[
+        const easyChallange = [
             "Explore a part of the venue where you've never been",
             "Find a festival staff member and take a selfie",
             "Give someone a high-five and ask for their name",
@@ -15,20 +16,21 @@
             "Eat something new",
             "Find a green meadow",
             "Listen to a song completely",
-            "Charge your phone",
             "Take a photo of a flower",
             "Find someone who's laughing",
-            "Count 10 different T-shirt colors",
+            "Count 8 different T-shirt colors under 10 minutes",
+            "take a photo of a street artist",
             "Close your eyes for 2 min and just relax",
             "Take a deep breath",
             "Give a friend a compliment",
             "Find an object with at least 3 colors",
             "Draw a simple symbol in the sand",
             "Apply sunscreen",
-            "Watch the clouds for a minute"
+            "Watch the clouds for a minute",
+            "Give a stranger a compliment",
         ]
 
-        const hardChallenge = [ 
+        const hardChallenge = [ //each idea hs to be different
             "Find 3 people with the same band shirt as you",
             "Sing Karaoke with a stranger",
             "Dance Battle with stranger",
@@ -55,7 +57,6 @@
             "Take a selfie with a Dresseed up person",
             "High-5 someone younger than 10 Years old",
             "high-5 someone older than 60 Years old",
-            "Find someone with the same name as you",
             "Invent a secret handshake with a friend",
             "Help someone who dropped something",
             "Try 5 different food stands",
@@ -64,6 +65,21 @@
             "Give someone water who drank too much alcohol",
             "Eat a fruit or vegetable (it's healthy!)",
             "Selfie during Sziget Special (Main Stage)",
+            "play a game that involves beer",
+            "Give a stranger a Piggyback ride",
+            "make a dragqueen kiss & sign this square!",
+            "catch a sunrise or sunset",
+            "Sign a strangers arm or leg with a pen",
+        ]
+
+        const impossibleChallenge = [
+            "(JOKER) Find 3 people with the same shirt as you",
+            "(JOKER) Get filmed for the big Screen at the Main Stage",
+            "(JOKER) Roundtrip to Auchan and back with a purchase under 25 minutes",
+            "(JOKER) photograph the K bridge while it's empty",
+            "(JOKER Find someone with the same name as you",
+            '(JOKER) photograph the "before I die" wall while it is empty and open',
+            "(JOKER) Stand on the main Stage",
         ]
     </script>
     <script>
@@ -80,23 +96,26 @@
         // Function to fill the bingo grid
         function fillBingoGrid() {
             // Combine both arrays
-            const allChallenges = [...easyChallange, ...hardChallenge];
-            
-            // Shuffle the combined array
-            const shuffledChallenges = shuffleArray(allChallenges);
-            
-            // Get first 25 challenges for the 5x5 grid
-            const selectedChallenges = shuffledChallenges.slice(0, 25);
-            
-            // Define all grid positions
+            // Select 8 random items from easyChallange
+            const shuffledEasy = shuffleArray(easyChallange);
+            const selectedEasy = shuffledEasy.slice(0, 8);
+
+            // Select 16 random items from hardChallenge (to fill the remaining grid spaces)
+            const shuffledHard = shuffleArray(hardChallenge);
+            const selectedHard = shuffledHard.slice(0, 16);
+
+            // Combine the selections and shuffle again to mix positions
+            const selectedChallenges = shuffleArray([...selectedEasy, ...selectedHard]);
+
+            // Define all grid positions (excluding C3 which is for impossibleChallenge)
             const gridPositions = [
                 'A1', 'A2', 'A3', 'A4', 'A5',
                 'B1', 'B2', 'B3', 'B4', 'B5',
-                'C1', 'C2', 'C3', 'C4', 'C5',
+                'C1', 'C2', /*'C3',*/ 'C4', 'C5',
                 'D1', 'D2', 'D3', 'D4', 'D5',
                 'E1', 'E2', 'E3', 'E4', 'E5'
             ];
-            
+
             // Fill each position with a challenge
             gridPositions.forEach((position, index) => {
                 const element = document.getElementById(position);
@@ -104,6 +123,12 @@
                     element.textContent = selectedChallenges[index];
                 }
             });
+            // Add one impossible challenge at position C3 (middle)
+            const randomImpossibleChallenge = impossibleChallenge[Math.floor(Math.random() * impossibleChallenge.length)];
+            const centerElement = document.getElementById('C3');
+            if (centerElement) {
+                centerElement.textContent = randomImpossibleChallenge;
+            }
         }
 
         // Run the function when the page loads
@@ -111,9 +136,10 @@
     </script>
     <style>
         @page {
-          size: A4;
-          margin: 0cm;
+            size: A4;
+            margin: 0cm;
         }
+
         /* auskommentieren wenn Farbe gebraucht wird.
         @media print {
             body {
@@ -122,29 +148,31 @@
             }
         }*/
         body {
-          width: 21cm;
-          height: 29.7cm;
-          margin: 0 auto;
-          padding: 1cm;
-          padding-top: 2cm;
-          box-sizing: border-box;
-          font-family: sans-serif;
-          background: rgb(188, 142, 142);
+            width: 21cm;
+            height: 29.7cm;
+            margin: 0 auto;
+            padding: 1cm;
+            padding-top: 2cm;
+            box-sizing: border-box;
+            font-family: sans-serif;
+            background: rgb(188, 142, 142);
         }
-        
+
         .kasten {
-          width: 9.2cm;
-          height: 13cm;
-          background-color: #735dc5;
-          border: 1px solid #ccc;
-          margin-bottom: 5px;
+            width: 9.2cm;
+            height: 13cm;
+            background-color: #735dc5;
+            border: 1px solid #ccc;
+            margin-bottom: 5px;
         }
+
         .flexy {
-          display: flex;
-          justify-content: space-between;
-          margin-bottom: 5px;
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
         }
-        .bingobox{
+
+        .bingobox {
             width: 60px;
             height: 60px;
             border: 1px solid black;
@@ -159,6 +187,7 @@
             overflow-wrap: break-word;
             hyphens: auto;
         }
+
         .bingogrid {
             display: grid;
             grid-template-columns: repeat(5, 1fr);
@@ -166,21 +195,25 @@
             padding: 8px;
             aspect-ratio: 1 / 1;
         }
+
         .word-break {
             word-wrap: break-word;
             overflow-wrap: break-word;
             hyphens: auto;
         }
+
         .leftText {
             font-size: 9px;
             text-align: left;
             width: 47%;
         }
+
         .rightText {
             font-size: 10px;
             text-align: left;
             width: 47%;
         }
+
         .right-kasten {
             width: 9.2cm;
             height: 13cm;
@@ -188,77 +221,107 @@
             border: 1px solid #ccc;
             margin-bottom: 5px;
             font-size: 10px;
-            
+
         }
+
         .spacerino {
             padding: 10px;
         }
-        </style>
-        
-</head>
-<body>
-        <div class="flexy">
-            <div class="kasten">
-                <div class="flexy"style="margin: auto; padding: 5px;">
-                    <div class="leftText word-break">Complete a row, a column, or a diagonal to shout "BINGO!" and claim your victory! The first two Szitizens to complete a line and prove it will even win a small, personal prize package sent directly from Switzerland – because we love the Sziget spirit!
-                        But the real win? The stories you'll tell, the people you'll meet, and the pure joy of embracing every moment on our magical island.</div>
-                    <div class="rightText word-break">You don’t like your Card? <br>
-                        Well to bad for you because:</div>
 
+        .bingoTitle {
+            text-align: center;
+            font-size: 11px;
+            font-weight: bold;
+            margin-bottom: 2px;
+        }
+
+        .right-text {
+            font-size: 9px;
+            text-align: left;
+            padding: 20px;
+            padding-right: 30px;
+            border-right: black 1px solid;
+        }
+    </style>
+</head>
+
+<body>
+    <p class="bingoTitle">Unofficial Bingo Card</p>
+    <div class="flexy" style="margin: auto; padding: 5px;">
+        <div class="kasten">
+            <p class="bingoTitle">Unofficial Bingo Card</p>
+            <div class="flexy" style="margin: auto; padding: 5px;">
+                <div class="leftText word-break">Complete a row, a column, or a diagonal to shout "BINGO!" and claim
+                    your victory! The first two Szitizens to complete a line and prove it will even win a small,
+                    personal prize package sent directly from Switzerland – because we love the Sziget spirit!
+                    But the real win? The stories you'll tell, the people you'll meet, and the pure joy of embracing
+                    every moment on our magical island.</div>
+                <div class="rightText word-break">
+                    <p class="ruleText">You don’t like your Card? <br>
+                        Well to bad for you because:</p>
                 </div>
-                <div class="bingogrid">
-                    <div class="bingobox" id="A1">A1 Ich will nur testen was passiert, wenn ich zu viel Text eingebe Mehr Zeilen!</div>
-                    <div class="bingobox" id="A2">A2</div>
-                    <div class="bingobox" id="A3">A3</div>
-                    <div class="bingobox" id="A4">A4</div>
-                    <div class="bingobox" id="A5">A5</div>
-                  
-                    <div class="bingobox" id="B1">B1</div>
-                    <div class="bingobox" id="B2">B2</div>
-                    <div class="bingobox" id="B3">B3</div>
-                    <div class="bingobox" id="B4">B4</div>
-                    <div class="bingobox" id="B5">B5</div>
-                  
-                    <div class="bingobox" id="C1">C1</div>
-                    <div class="bingobox" id="C2">C2</div>
-                    <div class="bingobox" id="C3">C3</div>
-                    <div class="bingobox" id="C4">C4</div>
-                    <div class="bingobox" id="C5">C5</div>
-                  
-                    <div class="bingobox" id="D1">D1</div>
-                    <div class="bingobox" id="D2">D2</div>
-                    <div class="bingobox" id="D3">D3</div>
-                    <div class="bingobox" id="D4">D4</div>
-                    <div class="bingobox" id="D5">D5</div>
-                  
-                    <div class="bingobox" id="E1">E1</div>
-                    <div class="bingobox" id="E2">E2</div>
-                    <div class="bingobox" id="E3">E3</div>
-                    <div class="bingobox" id="E4">E4</div>
-                    <div class="bingobox" id="E5">E5</div>
-                  </div>
-                  <h5></h5>
-                  
+
             </div>
-            <div class="kasten right-kasten"><p class="spacerino">Sziget Challenge Bingo: The Official Rulebook
-                The Goal: Complete a full line of challenges – horizontally, vertically, or diagonally – to achieve BINGO!
-                How to Play:
-                Complete a Challenge: To mark a square, you must successfully complete the challenge described.
-                Proof is Key: For verification, take a photo or video of yourself completing the challenge. For some, a witness (another Szitizen or friend) can also confirm. This proof is crucial if you win!
-                Mark Your Square: Once a challenge is completed, mark the square on your card with a pen, marker, or even a sticker.
-                Shout "BINGO!": When you complete five challenges in a straight line (horizontal, vertical, or diagonal), yell "BINGO!" loudly and proudly!
-                Claim Your Prize (for the first two!):
-                Once you've shouted BINGO, send your photo/video proof for the completed line to the contact below.
-                The first two verified winners will receive a small prize package from Switzerland!
-                The prize includes: A delicious Swiss chocolate bar, a handwritten congratulation letter, and some other small Sziget-themed surprises (total value including shipping max. 20 CHF).
-                One Card, One Player: Each card is unique to you. Do not swap cards or share completed squares with others.
-                Be Respectful: All challenges should be completed with respect for other festival-goers, staff, and the environment. No illegal activities, please!
-                Have Fun First: This game is about enhancing your Sziget experience, not replacing it. Prioritize enjoying the music, the art, and the community.</p></div>
+            <div class="bingogrid">
+                <div class="bingobox" id="A1">A1 Ich will nur testen was passiert, wenn ich zu viel Text eingebe Mehr
+                    Zeilen!</div>
+                <div class="bingobox" id="A2">A2</div>
+                <div class="bingobox" id="A3">A3</div>
+                <div class="bingobox" id="A4">A4</div>
+                <div class="bingobox" id="A5">A5</div>
+
+                <div class="bingobox" id="B1">B1</div>
+                <div class="bingobox" id="B2">B2</div>
+                <div class="bingobox" id="B3">B3</div>
+                <div class="bingobox" id="B4">B4</div>
+                <div class="bingobox" id="B5">B5</div>
+
+                <div class="bingobox" id="C1">C1</div>
+                <div class="bingobox" id="C2">C2</div>
+                <div class="bingobox" id="C3">C3</div>
+                <div class="bingobox" id="C4">C4</div>
+                <div class="bingobox" id="C5">C5</div>
+
+                <div class="bingobox" id="D1">D1</div>
+                <div class="bingobox" id="D2">D2</div>
+                <div class="bingobox" id="D3">D3</div>
+                <div class="bingobox" id="D4">D4</div>
+                <div class="bingobox" id="D5">D5</div>
+
+                <div class="bingobox" id="E1">E1</div>
+                <div class="bingobox" id="E2">E2</div>
+                <div class="bingobox" id="E3">E3</div>
+                <div class="bingobox" id="E4">E4</div>
+                <div class="bingobox" id="E5">E5</div>
+            </div>
+            <h5></h5>
+
         </div>
-        <div class="flexy">
-            <div class="kasten">das</div>
-            <div class="kasten">das</div>
+        <div class="kasten right-kasten">
+            <div class="spacerino right-text">
+                <strong>Sziget Challenge Bingo: The Unofficial Rulebook!</strong>
+
+                <strong>The Goal:</strong> Complete the full bingo card. Except the joker.
+
+                <strong>Rules:</strong>
+                <ol>
+                    <li>Complete a challenge: Once a challenge/task is completed you can mark the square</li>
+                    <li>Shout "BINGO" once you completed the full card (except joker)</li>
+                    <li>One Card, One Player: Each card is unique to you. Do not swap cards or share completed squares
+                        with others.</li>
+                    <li>Be Respectful: All challenges should be completed with respect for other Szitizens, staff, and
+                        the environment. No illegal activities, please!</li>
+                    <li>Have Fun First: This game is about enhancing your Sziget experience, not replacing it.
+                        Prioritize enjoying the music, the art, and the community.</li>
+                </ol>
+            </div>
         </div>
-      
+    </div>
+    <div class="flexy">
+        <div class="kasten">das</div>
+        <div class="kasten">das</div>
+    </div>
+
 </body>
+
 </html>
