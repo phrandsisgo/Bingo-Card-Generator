@@ -6,83 +6,41 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bingo Print</title>
     <script>
-        const easyChallange = [
-            "Explore a part of the venue where you've never been",
-            "Find a festival staff member and take a selfie",
-            "Give someone a high-five and ask for their name",
-            "Drink a glass of water",
-            "Find a blue object",
-            "Smile at 5 different people",
-            "Eat something new",
-            "Find a green meadow",
-            "Listen to a song completely",
-            "Take a photo of a flower",
-            "Find someone who's laughing",
-            "Count 8 different T-shirt colors under 10 minutes",
-            "take a photo of a street artist",
-            "Close your eyes for 2 min and just relax",
-            "Take a deep breath",
-            "Give a friend a compliment",
-            "Find an object with at least 3 colors",
-            "Draw a simple symbol in the sand",
-            "Apply sunscreen",
-            "Watch the clouds for a minute",
-            "Give a stranger a compliment",
-        ]
+        const alliChallange = [
+            "Du bisch mit Fremde Lüt amne Zeltplatz es Bierli go zische.",
+            "Dir isch vo öppert fremdem es Getränk kauft worde.",
+            "Du häsch es fremdes Gruppefoti g'fotobombt.",
+            "Du häsche e WC Kabine ufgmacht und gaggi isch nöd nur ide Schüssle gsi.",
+            "Du triffsch öpper wod kennsch , aber nöd gwüsst, dass er/sie da isch.",
+            "Du rennsch vo einnere Bühni zunere andere will parallel mehreri Konzert laufed.",
+            "du hesch mit öpperem Tanzt wod nöt kennt hesch.",
+            "Du bisch is Zelt Glegge zum Schlafe aber muesch no ufs WC.",
+            "Du hesch es Konzert verschlafe wod hesch welle luege",
+            "Du triffsch ander Schwiizer/inne",
+            "Fremdi Lüüt sprützed dich nass.",
+            "Du hesch ade Karaoke bar es Lied vo Abba ghört.",
+            "Du hesch vo fremdem Kontaktdate Uustuscht.",
+            "Du magsch dich nöd erinnere wied zrugg zum Zelt cho bisch.",
+            "Du hesch öpper gseh sich z'übergeh.",
+            "Du muesch dich zwüsched 2 Künstler entscheide wod gseh wetsch.",
+            "Du hesch dini Friends verlore",
+            "Du hesch mit fremde Lüt es trinkspiil gspillt.",
+            "Du hesch ungfrögt de Beziehigsstatus vonnere Person erfahre.",
+            "Du wiersch uf Holändisch aagsproche.",
+            "Du redisch uf englisch und merksch spöter, dass beidi dütsch chönnd.",
+            "Du issisch es Stuck Lebe (pizza) nach Mitternacht.",
+            "D Sunne Weckt dich vor 09:00.",
+            "Meh wie 50 Bier trinke.",
+            "vonnere fremde Gruppe adoptiert zwerde.",
+            "Vo fremde Lüt gfrögt werde öber es Selfie mache chönnd.",
+            "Vonnere Fremde Gruppe gfrögt werde öb es Foti mache chasch.",
+            "Wildi Titte gseh. (eifach frau oben ohne gseh, nöd meh)",
+            "E stage gseh wo weniger als 100 Lüt sind.",
+            "Lern öpper kenne wo im Pass erwähnt wierd.",
+            "Find öpper mitm gliiche Name wie du.",
+            "Verwütsch öpper bim Alk-schmuggel.",
+                ]
 
-        const hardChallenge = [ //each idea hs to be different
-            "Find 3 people with the same band shirt as you",
-            "Sing Karaoke with a stranger",
-            "Dance Battle with a stranger",
-            "Stack 20 cans of beer",
-            "Help a stranger set up their tent",
-            "Start a conga line through the audience",
-            "Get Autographs from 10 Szitizens",
-            "Build a human tower with 5 people",
-            "Give someone a 'festival survival tip'",
-            "Wear 3 different types of hats",
-            "Play a song on an improvised instrument",
-            "Take the role of a photographer for 5 minutes",
-            "Find someone with an Animal costume",
-            "Dance to music you've never heard before",
-            "Find a 'Lost & Found' item",
-            "Exchange a drinking vessel with someone",
-            "Create a 'group selfie' with 10 strangers",
-            "Build a small sculpture from trash",
-            "Get a Szitizenship at the immigration office",
-            "Learn a new dance step from a stranger",
-            "Learn a sentence in a new language",
-            "Find Szitizens from 10 different countries",
-            "Share some food/drink with a stranger",
-            "Take a selfie with a Dressed up person",
-            "High-5 someone younger than 10 years old",
-            "High-5 someone older than 60 years old",
-            "Invent a secret handshake with a friend",
-            "Help someone who dropped something",
-            "Try 5 different food stands",
-            "discover a new band or artist",
-            "Find someone who knows your favorite band",
-            "Give someone water who drank too much alcohol",
-            "Eat a fruit or vegetable (it's healthy!)",
-            "Selfie during Sziget Special (Main Stage)",
-            "play a game that involves beer",
-            "Give a stranger a Piggyback ride",
-            "make a dragqueen kiss & sign this square!",
-            "catch a sunrise or sunset",
-            "Sign a strangers arm or leg with a pen",
-
-        ]
-
-        const impossibleChallenge = [
-            "(JOKER) Find 3 people with the same shirt as you",
-            "(JOKER) Get filmed for the big Screen at the Main Stage",
-            "(JOKER) Roundtrip to Auchan and back with a purchase under 25 minutes",
-            "(JOKER) Photograph the K bridge while it's empty",
-            "(JOKER) Find someone with the same name as you",
-            '(JOKER) photograph the "before I die" wall while it is empty and open',
-            "(JOKER) Complete all the passport stamps under 1.5 Hours",
-            "(JOKER) Stand on the main Stage",
-        ]
     </script>
     <script>
         // Function to shuffle an array
@@ -97,28 +55,21 @@
 
         // Function to fill the bingo grid
         function fillBingoGrid() {
-            // Combine both arrays
-            // Select 8 random items from easyChallange
-            const shuffledEasy = shuffleArray(easyChallange);
-            const selectedEasy = shuffledEasy.slice(0, 8);
-
-            // Select 16 random items from hardChallenge (to fill the remaining grid spaces)
-            const shuffledHard = shuffleArray(hardChallenge);
-            const selectedHard = shuffledHard.slice(0, 16);
-
-            // Combine the selections and shuffle again to mix positions
-            const selectedChallenges = shuffleArray([...selectedEasy, ...selectedHard]);
-
-            // Define all grid positions (excluding C3 which is for impossibleChallenge)
+            // Shuffle the alliChallange array
+            const shuffledChallenges = shuffleArray(alliChallange);
+            
+            // We need 25 challenges for the 5x5 grid
+            const selectedChallenges = shuffledChallenges.slice(0, 25);
+            
+            // Define all grid positions
             const gridPositions = [
                 'A1', 'A2', 'A3', 'A4', 'A5',
                 'B1', 'B2', 'B3', 'B4', 'B5',
-                'C1', 'C2', /*'C3',*/ 'C4', 'C5',
+                'C1', 'C2', 'C3', 'C4', 'C5',
                 'D1', 'D2', 'D3', 'D4', 'D5',
                 'E1', 'E2', 'E3', 'E4', 'E5'
             ];
 
-
             // Fill each position with a challenge
             gridPositions.forEach((position, index) => {
                 const element = document.getElementById(position);
@@ -126,37 +77,23 @@
                     element.textContent = selectedChallenges[index];
                 }
             });
-            // Add one impossible challenge at position C3 (middle)
-            const randomImpossibleChallenge = impossibleChallenge[Math.floor(Math.random() * impossibleChallenge.length)];
-            const centerElement = document.getElementById('C3');
-            if (centerElement) {
-                centerElement.textContent = randomImpossibleChallenge;
-            }
-            // Fill the second grid with the same challenges
         }
 
         function fillSecondBingoGrid() {
-            // Combine both arrays
-            // Select 8 random items from easyChallange
-            const shuffledEasy = shuffleArray(easyChallange);
-            const selectedEasy = shuffledEasy.slice(0, 8);
-
-            // Select 16 random items from hardChallenge (to fill the remaining grid spaces)
-            const shuffledHard = shuffleArray(hardChallenge);
-            const selectedHard = shuffledHard.slice(0, 16);
-
-            // Combine the selections and shuffle again to mix positions
-            const selectedChallenges = shuffleArray([...selectedEasy, ...selectedHard]);
-
-            // Define all grid positions (excluding C3 which is for impossibleChallenge)
+            // Shuffle the alliChallange array differently for the second grid
+            const shuffledChallenges = shuffleArray(alliChallange);
+            
+            // We need 25 challenges for the 5x5 grid
+            const selectedChallenges = shuffledChallenges.slice(0, 25);
+            
+            // Define all grid positions
             const gridPositions = [
                 '1A', '1B', '1C', '1D', '1E',
                 '2A', '2B', '2C', '2D', '2E',
-                '3A', '3B', /*'3C',*/ '3D', '3E',
+                '3A', '3B', '3C', '3D', '3E',
                 '4A', '4B', '4C', '4D', '4E',
                 '5A', '5B', '5C', '5D', '5E'
-            ]
-
+            ];
 
             // Fill each position with a challenge
             gridPositions.forEach((position, index) => {
@@ -165,15 +102,6 @@
                     element.textContent = selectedChallenges[index];
                 }
             });
-            // Add one impossible challenge at position C3 (middle)
-            const randomImpossibleChallenge = impossibleChallenge[Math.floor(Math.random() * impossibleChallenge.length)];
-            const centerElement = document.getElementById('3C');
-            if (centerElement) {
-                centerElement.textContent = randomImpossibleChallenge;
-            }
-            // Fill the second grid with the same challenges
-
-
         }
 
         // Run the function when the page loads
